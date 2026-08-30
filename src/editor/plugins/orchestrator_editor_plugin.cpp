@@ -48,6 +48,11 @@
 #include <godot_cpp/classes/theme.hpp>
 #include <godot_cpp/classes/viewport.hpp>
 
+#include <godot_cpp/classes/translation_server.hpp>
+#include <godot_cpp/classes/translation_domain.hpp>
+#include <godot_cpp/classes/translation.hpp>
+
+
 OrchestratorPlugin* OrchestratorPlugin::_plugin = nullptr;
 
 /// The layout version of the metadata file. Bump this whenever the sections or keys change shape so
@@ -504,6 +509,20 @@ void OrchestratorPlugin::_notification(int p_what) {
             // It's safe then to cache the plugin reference here.
             _plugin = this;
 
+            // ==================== 1. 註冊外掛專屬翻譯域 ====================
+            TranslationServer *ts = TranslationServer::get_singleton();
+            ResourceLoader *rl = ResourceLoader::get_singleton();
+            if (ts && rl) {
+                Ref<TranslationDomain> domain = ts->get_or_add_domain("godot_orchestrator");
+                
+                // 載入繁體中文翻譯檔
+                Ref<Translation> zh_tw = rl->load("res://addons/orchestrator/i18n/zh_TW.po");
+                if (zh_tw.is_valid()) {
+                    domain->add_translation(zh_tw);
+                }
+            }
+            // ==========================================================
+
             // Must run before anything reads a cache file, notably the editor panel below.
             FileUtils::migrate_editor_cache_files();
 
@@ -534,6 +553,13 @@ void OrchestratorPlugin::_notification(int p_what) {
 
             SAFE_MEMDELETE(_editor_panel);
             _plugin = nullptr;
+
+            // ==================== 2. 卸載翻譯域 ====================
+            TranslationServer *ts = TranslationServer::get_singleton();
+            if (ts && ts->has_domain("godot_orchestrator")) {
+                ts->remove_domain("godot_orchestrator");
+            }
+            // =====================================================
             break;
         }
         case NOTIFICATION_READY: {

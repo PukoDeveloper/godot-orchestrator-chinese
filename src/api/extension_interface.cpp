@@ -68,7 +68,7 @@ namespace orchestrator {
         }
         if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
             //TranslationServer initialization.
-            register_translations();
+            //register_translations();
               register_orchestration_editor_types();
             register_editor_types();
         }

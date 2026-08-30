@@ -94,7 +94,7 @@
 #define SNAME(x) StringName((x))
 
 
-inline godot::String orchestrator_tr(const godot::String &p_message, const godot::StringName &p_context = "") {
+/*inline godot::String orchestrator_tr(const godot::String &p_message, const godot::StringName &p_context = "") {
     godot::TranslationServer *ts = godot::TranslationServer::get_singleton();
     if (!ts) {
         return p_message;
@@ -109,3 +109,42 @@ inline godot::String orchestrator_tr(const godot::String &p_message, const godot
 
 // 供 C++ 原始碼呼叫的巨集
 #define OTR(m_text) orchestrator_tr(m_text)
+*/
+
+namespace orchestrator {
+
+inline godot::String orchestrator_tr(const godot::String &p_message, const godot::StringName &p_context = "") {
+    godot::TranslationServer *ts = godot::TranslationServer::get_singleton();
+    if (!ts) {
+        return p_message;
+    }
+
+    // 取得插件專屬的 TranslationDomain
+    godot::Ref<godot::TranslationDomain> domain = ts->get_or_add_domain("godot_orchestrator");
+    if (domain.is_valid()) {
+        return domain->translate(p_message, p_context);
+    }
+
+    return ts->translate(p_message, p_context);
+}
+
+inline godot::String orchestrator_tr_n(const godot::String &p_message, const godot::String &p_message_plural, int p_n, const godot::StringName &p_context = "") {
+    godot::TranslationServer *ts = godot::TranslationServer::get_singleton();
+    if (!ts) {
+        return p_n == 1 ? p_message : p_message_plural;
+    }
+
+    godot::Ref<godot::TranslationDomain> domain = ts->get_or_add_domain("godot_orchestrator");
+    if (domain.is_valid()) {
+        return domain->translate_plural(p_message, p_message_plural, p_n, p_context);
+    }
+
+    return ts->translate_plural(p_message, p_message_plural, p_n, p_context);
+}
+
+} // namespace orchestrator
+
+// 全域巨集定義（方便在所有 C++ 原始碼中直接呼叫）
+#define OTR(m_text) orchestrator::orchestrator_tr(m_text)
+#define OTRC(m_text, m_context) orchestrator::orchestrator_tr(m_text, m_context)
+#define OTRN(m_singular, m_plural, m_count) orchestrator::orchestrator_tr_n(m_singular, m_plural, m_count)
