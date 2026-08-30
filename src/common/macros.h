@@ -16,6 +16,8 @@
 //
 #pragma once
 
+#include <godot_cpp/classes/translation_domain.hpp>
+
 #include "common/version.h"
 #include <godot_cpp/classes/translation_server.hpp>
 
