@@ -98,7 +98,11 @@ inline godot::String orchestrator_tr(const godot::String &p_message, const godot
         return p_message;
     }
     // 指定外掛的 Domain 進行翻譯
-    return ts->translate(p_message, p_context, "godot_orchestrator");
+    Ref<TranslationDomain> domain = ts->get_or_add_domain("godot_orchestrator");
+    if (domain.is_valid()) {
+        return domain->translate(p_message, p_context);
+    }
+    return ts->translate(p_message, p_context);
 }
 
 // 供 C++ 原始碼呼叫的巨集
