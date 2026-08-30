@@ -47,7 +47,7 @@ void OScriptNodeMakeArray::allocate_default_pins() {
 }
 
 String OScriptNodeMakeArray::get_tooltip_text() const {
-    return "Create an array from a series of items.";
+    return ORT("Create an array from a series of items.");
 }
 
 String OScriptNodeMakeArray::get_node_title() const {

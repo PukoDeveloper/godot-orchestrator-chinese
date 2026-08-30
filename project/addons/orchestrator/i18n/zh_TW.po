@@ -1,0 +1,18 @@
+msgid ""
+msgstr ""
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Branch"
+msgstr "分支"
+
+msgid "For Loop"
+msgstr "For 迴圈"
+
+msgid "Condition"
+msgstr "條件"
+
+msgid "Create an array from a series of items."
+msgstr "為輸入的元素創建列表"

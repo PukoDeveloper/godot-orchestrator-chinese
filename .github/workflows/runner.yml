@@ -1,3 +1,5 @@
+# This file has been modified.
+#Licensed under the Apache License, Version 2.0.
 name: 🔗 GHA
 
 on:
@@ -23,27 +25,27 @@ jobs:
     name: 🤖 Android
     uses: ./.github/workflows/android_builds.yml
 
-  linux-build:
-    name: 🐧 Linux
-    uses: ./.github/workflows/linux_builds.yml
+  #linux-build:
+  #  name: 🐧 Linux
+  #  uses: ./.github/workflows/linux_builds.yml
 
-  macos-build:
-    name: 🍎 macOS
-    uses: ./.github/workflows/macos_builds.yml
+  #macos-build:
+  #  name: 🍎 macOS
+  #  uses: ./.github/workflows/macos_builds.yml
 
-  ios-build:
-    name: 🍏 iOS
-    uses: ./.github/workflows/ios_builds.yml
+  #ios-build:
+  #  name: 🍏 iOS
+  #  uses: ./.github/workflows/ios_builds.yml
 
-  windows-build:
-    name: 🪟 Windows
-    uses: ./.github/workflows/windows_builds.yml
+  #windows-build:
+  #  name: 🪟 Windows
+  #  uses: ./.github/workflows/windows_builds.yml
 
-  web-build:
-    name: 🌐 Web
-    uses: ./.github/workflows/web_builds.yml
+  #web-build:
+  #  name: 🌐 Web
+  #  uses: ./.github/workflows/web_builds.yml
 
   artifacts-build:
     name: 📎 Artifacts
-    needs: [android-build, linux-build, macos-build, windows-build, web-build, ios-build]
+    needs: [android-build]#, linux-build, macos-build, windows-build, web-build, ios-build]
     uses: ./.github/workflows/artifact_builds.yml

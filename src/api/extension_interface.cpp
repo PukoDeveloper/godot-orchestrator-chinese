@@ -27,9 +27,26 @@
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
 
+#include <godot_cpp/classes/translation_server.hpp>
+#include <godot_cpp/classes/translation_domain.hpp>
+#include <godot_cpp/classes/resource_loader.hpp>
+#include <godot_cpp/classes/translation.hpp>
+
 using namespace godot;
 
 namespace orchestrator {
+    static const StringName ORCHESTRATOR_DOMAIN = "godot_orchestrator";
+    void register_translations() {
+        Translation Domain
+        Ref<TranslationDomain> domain = ts->get_or_add_domain(ORCHESTRATOR_DOMAIN);
+
+        // 2. 載入對應語系的 .po / .translation 資源並加入 Domain
+        Ref<Translation> zh_tw = ResourceLoader::get_singleton()->load("res://addons/orchestrator/i18n/zh_TW.po");
+        if (zh_tw.is_valid()) {
+            domain->add_translation(zh_tw);
+        }
+    }
+    
     void initialize_extension_module(ModuleInitializationLevel p_level) {
         if (p_level == MODULE_INITIALIZATION_LEVEL_CORE) {
             ExtensionDB::create();
@@ -47,7 +64,9 @@ namespace orchestrator {
             create_core_singletons();
         }
         if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
-            register_orchestration_editor_types();
+            //TranslationServer initialization.
+            register_translations();
+              register_orchestration_editor_types();
             register_editor_types();
         }
     }
