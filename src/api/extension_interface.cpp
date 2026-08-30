@@ -35,7 +35,7 @@
 using namespace godot;
 
 namespace orchestrator {
-    static const StringName ORCHESTRATOR_DOMAIN = "godot_orchestrator";
+    /*static const StringName ORCHESTRATOR_DOMAIN = "godot_orchestrator";
     void register_translations() {
         TranslationServer *ts = TranslationServer::get_singleton();
         if (!ts) return;
@@ -49,6 +49,7 @@ namespace orchestrator {
             domain->add_translation(zh_tw);
         }
     }
+    */
     
     void initialize_extension_module(ModuleInitializationLevel p_level) {
         if (p_level == MODULE_INITIALIZATION_LEVEL_CORE) {
