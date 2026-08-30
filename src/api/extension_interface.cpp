@@ -37,7 +37,10 @@ using namespace godot;
 namespace orchestrator {
     static const StringName ORCHESTRATOR_DOMAIN = "godot_orchestrator";
     void register_translations() {
-        Translation Domain
+        TranslationServer *ts = TranslationServer::get_singleton();
+        if (!ts) return;
+
+        // 1. 取得或建立外掛專屬的 Translation Domain
         Ref<TranslationDomain> domain = ts->get_or_add_domain(ORCHESTRATOR_DOMAIN);
 
         // 2. 載入對應語系的 .po / .translation 資源並加入 Domain
