@@ -15,7 +15,7 @@
 // limitations under the License.
 //
 //Modifications Copyright (c) 2026 PukoDeveloper.
-//This file has been modified by PukoDeveloper on 2026-8-30.
+//This file has been modified by PukoDeveloper on 2026-8-31.
 #include "orchestration/nodes/arrays.h"
 
 #include "common/property_utils.h"
@@ -54,7 +54,7 @@ String OScriptNodeMakeArray::get_tooltip_text() const {
 }
 
 String OScriptNodeMakeArray::get_node_title() const {
-    return "Make Array";
+    return OTR("Make Array");
 }
 
 String OScriptNodeMakeArray::get_icon() const {
@@ -118,11 +118,11 @@ void OScriptNodeArrayGet::allocate_default_pins() {
 }
 
 String OScriptNodeArrayGet::get_tooltip_text() const {
-    return vformat("Given a %s and index, return the item at the specified index.", _collection_name);
+    return vformat(OTR("Given a {0} and index, return the item at the specified index.{1}"), _collection_name, 80);
 }
 
 String OScriptNodeArrayGet::get_node_title() const {
-    return "Get Element At Index";
+    return OTR("Get Element At Index");
 }
 
 String OScriptNodeArrayGet::get_icon() const {
@@ -174,11 +174,11 @@ void OScriptNodeArraySet::allocate_default_pins() {
 }
 
 String OScriptNodeArraySet::get_tooltip_text() const {
-    return vformat("Given a %s and index, assign the value at the specified index.", _collection_name);
+    return vformat(OTR("Given a %s and index, assign the value at the specified index."), _collection_name);
 }
 
 String OScriptNodeArraySet::get_node_title() const {
-    return "Set Element At Index";
+    return OTR("Set Element At Index");
 }
 
 String OScriptNodeArraySet::get_icon() const {
@@ -219,11 +219,11 @@ void OScriptNodeArrayFind::allocate_default_pins() {
 }
 
 String OScriptNodeArrayFind::get_tooltip_text() const {
-    return "Given an array and an item, returns the index of the item.";
+    return OTR("Given an array and an item, returns the index of the item.");
 }
 
 String OScriptNodeArrayFind::get_node_title() const {
-    return "Find Array Element";
+    return OTR("Find Array Element");
 }
 
 String OScriptNodeArrayFind::get_icon() const {
@@ -244,11 +244,11 @@ void OScriptNodeArrayClear::allocate_default_pins() {
 }
 
 String OScriptNodeArrayClear::get_tooltip_text() const {
-    return "Given an array, clears its contents.";
+    return OTR("Given an array, clears its contents.");
 }
 
 String OScriptNodeArrayClear::get_node_title() const {
-    return "Clear Array";
+    return OTR("Clear Array");
 }
 
 String OScriptNodeArrayClear::get_icon() const {
@@ -260,8 +260,8 @@ String OScriptNodeArrayClear::get_icon() const {
 
 void OScriptNodeArrayAppend::allocate_default_pins() {
     create_pin(PD_Input, PT_Execution, PropertyUtils::make_exec("ExecIn"));
-    create_pin(PD_Input, PT_Data, PropertyUtils::make_typed("target_array", Variant::ARRAY))->set_label("Target");
-    create_pin(PD_Input, PT_Data, PropertyUtils::make_typed("source_array", Variant::ARRAY))->set_label("Source");
+    create_pin(PD_Input, PT_Data, PropertyUtils::make_typed("target_array", Variant::ARRAY))->set_label(OTR("Target"));
+    create_pin(PD_Input, PT_Data, PropertyUtils::make_typed("source_array", Variant::ARRAY))->set_label(OTR("Source"));
 
     create_pin(PD_Output, PT_Execution, PropertyUtils::make_exec("ExecOut"));
     create_pin(PD_Output, PT_Data, PropertyUtils::make_typed("array", Variant::ARRAY));
@@ -270,11 +270,11 @@ void OScriptNodeArrayAppend::allocate_default_pins() {
 }
 
 String OScriptNodeArrayAppend::get_tooltip_text() const {
-    return "Append the source array into the target array";
+    return OTR("Append the source array into the target array");
 }
 
 String OScriptNodeArrayAppend::get_node_title() const {
-    return "Append Arrays";
+    return OTR("Append Arrays");
 }
 
 String OScriptNodeArrayAppend::get_icon() const {
@@ -298,7 +298,7 @@ void OScriptNodeArrayAddElement::_upgrade(uint32_t p_version, uint32_t p_current
 
 void OScriptNodeArrayAddElement::allocate_default_pins() {
     create_pin(PD_Input, PT_Execution, PropertyUtils::make_exec("ExecIn"));
-    create_pin(PD_Input, PT_Data, PropertyUtils::make_typed("target_array", Variant::ARRAY))->set_label("Target");
+    create_pin(PD_Input, PT_Data, PropertyUtils::make_typed("target_array", Variant::ARRAY))->set_label(OTR("Target"));
     create_pin(PD_Input, PT_Data, PropertyUtils::make_variant("element"));
 
     create_pin(PD_Output, PT_Execution, PropertyUtils::make_exec("ExecOut"));
@@ -309,11 +309,11 @@ void OScriptNodeArrayAddElement::allocate_default_pins() {
 }
 
 String OScriptNodeArrayAddElement::get_tooltip_text() const {
-    return "Given an array, append the item to the array.";
+    return OTR("Given an array, append the item to the array.");
 }
 
 String OScriptNodeArrayAddElement::get_node_title() const {
-    return "Add Array Item";
+    return OTR("Add Array Item");
 }
 
 String OScriptNodeArrayAddElement::get_icon() const {
@@ -336,7 +336,7 @@ void OScriptNodeArrayRemoveElement::_upgrade(uint32_t p_version, uint32_t p_curr
 
 void OScriptNodeArrayRemoveElement::allocate_default_pins() {
     create_pin(PD_Input, PT_Execution, PropertyUtils::make_exec("ExecIn"));
-    create_pin(PD_Input, PT_Data, PropertyUtils::make_typed("target_array", Variant::ARRAY))->set_label("Target");
+    create_pin(PD_Input, PT_Data, PropertyUtils::make_typed("target_array", Variant::ARRAY))->set_label(OTR("Target"));
     create_pin(PD_Input, PT_Data, PropertyUtils::make_variant("element"));
 
     create_pin(PD_Output, PT_Execution, PropertyUtils::make_exec("ExecOut"));
@@ -347,11 +347,11 @@ void OScriptNodeArrayRemoveElement::allocate_default_pins() {
 }
 
 String OScriptNodeArrayRemoveElement::get_tooltip_text() const {
-    return "Given an array, remove the item from the array if it exists.";
+    return OTR("Given an array, remove the item from the array if it exists.");
 }
 
 String OScriptNodeArrayRemoveElement::get_node_title() const {
-    return "Remove Array Item";
+    return OTR("Remove Array Item");
 }
 
 String OScriptNodeArrayRemoveElement::get_icon() const {
@@ -363,7 +363,7 @@ String OScriptNodeArrayRemoveElement::get_icon() const {
 
 void OScriptNodeArrayRemoveIndex::allocate_default_pins() {
     create_pin(PD_Input, PT_Execution, PropertyUtils::make_exec("ExecIn"));
-    create_pin(PD_Input, PT_Data, PropertyUtils::make_typed("target_array", Variant::ARRAY))->set_label("Target");
+    create_pin(PD_Input, PT_Data, PropertyUtils::make_typed("target_array", Variant::ARRAY))->set_label(OTR("Target"));
     create_pin(PD_Input, PT_Data, PropertyUtils::make_typed("index", Variant::INT));
 
     create_pin(PD_Output, PT_Execution, PropertyUtils::make_exec("ExecOut"));
@@ -373,11 +373,11 @@ void OScriptNodeArrayRemoveIndex::allocate_default_pins() {
 }
 
 String OScriptNodeArrayRemoveIndex::get_tooltip_text() const {
-    return "Given an array, removes an item from the array by index.";
+    return OTR("Given an array, removes an item from the array by index.");
 }
 
 String OScriptNodeArrayRemoveIndex::get_node_title() const {
-    return "Remove Array Item By Index";
+    return OTR("Remove Array Item By Index");
 }
 
 String OScriptNodeArrayRemoveIndex::get_icon() const {

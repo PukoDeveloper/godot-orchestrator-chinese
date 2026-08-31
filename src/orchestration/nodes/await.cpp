@@ -14,6 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+//Modifications Copyright (c) 2026 PukoDeveloper.
+//This file has been modified by PukoDeveloper on 2026-8-31.
 #include "orchestration/nodes/await.h"
 
 #include "common/property_utils.h"
@@ -37,11 +39,11 @@ void OScriptNodeAwaitSignal::allocate_default_pins() {
 }
 
 String OScriptNodeAwaitSignal::get_tooltip_text() const {
-    return "Yields/Awaits the script's execution until the given signal occurs.";
+    return OTR("Yields/Awaits the script's execution until the given signal occurs.");
 }
 
 String OScriptNodeAwaitSignal::get_node_title() const {
-    return "Await Signal";
+    return OTR("Await Signal");
 }
 
 void OScriptNodeAwaitSignal::on_pin_disconnected(const Ref<OScriptNodePin>& p_pin) {

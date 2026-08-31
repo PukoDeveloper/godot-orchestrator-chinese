@@ -14,6 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+//Modifications Copyright (c) 2026 PukoDeveloper.
+//This file has been modified by PukoDeveloper on 2026-8-31.
 #include "orchestration/nodes/call_function.h"
 
 #include "api/extension_db.h"
@@ -194,7 +196,7 @@ void OScriptNodeCallFunction::_create_pins_for_method(const MethodInfo& p_method
     }
 
     if (_chainable && _chain && target.is_valid()) {
-        create_pin(PD_Output, PT_Data, PropertyUtils::as("return_target", target->get_property_info()))->set_label("Target");
+        create_pin(PD_Output, PT_Data, PropertyUtils::as("return_target", target->get_property_info()))->set_label(OTR("Target"));
     }
 }
 
@@ -451,9 +453,9 @@ Ref<OScriptNodePin> OScriptNodeCallMemberFunction::_create_target_pin() {
 
 String OScriptNodeCallMemberFunction::get_tooltip_text() const {
     if (!_reference.method.name.is_empty()) {
-        return vformat("Calls the function '%s'", _reference.method.name);
+        return vformat(OTR("Calls the function '%s'"), _reference.method.name);
     }
-    return "Calls the specified function";
+    return OTR("Calls the specified function");
 }
 
 String OScriptNodeCallMemberFunction::get_node_title() const {
@@ -570,13 +572,13 @@ Ref<OScriptNodePin> OScriptNodeCallParentMemberFunction::_create_target_pin() {
 
 String OScriptNodeCallParentMemberFunction::get_tooltip_text() const {
     if (!_reference.method.name.is_empty()) {
-        return vformat("Calls the parent function '%s'", _reference.method.name);
+        return vformat(OTR("Calls the parent function '%s'"), _reference.method.name);
     }
-    return "Calls the specified parent function";
+    return OTR("Calls the specified parent function");
 }
 
 String OScriptNodeCallParentMemberFunction::get_node_title() const {
-    return vformat("Parent: %s", super::get_node_title());
+    return vformat(OTR("Parent: %s"), super::get_node_title());
 }
 
 OScriptNodeCallParentMemberFunction::OScriptNodeCallParentMemberFunction() {
@@ -629,12 +631,12 @@ void OScriptNodeCallScriptFunction::post_placed_new_node() {
 }
 
 String OScriptNodeCallScriptFunction::get_tooltip_text() const {
-    String tooltip = "Calls the method " + _reference.method.name;
+    String tooltip = vformat(OTR("Calls the method %s"), _reference.method.name);
     if (!_function.is_valid() || _function->get_description().strip_edges().is_empty()) {
         return tooltip;
     }
 
-    tooltip += "\n\nDescription:\n" + _function->get_description().strip_edges();
+    tooltip += OTR("\n\nDescription:\n") + _function->get_description().strip_edges();
     return tooltip;
 }
 
@@ -699,13 +701,13 @@ bool OScriptNodeCallScriptFunction::is_override() const {
 
 String OScriptNodeCallParentScriptFunction::get_tooltip_text() const {
     if (!_reference.method.name.is_empty()) {
-        return vformat("Calls the parent script function '%s'", _reference.method.name);
+        return vformat(OTR("Calls the parent script function '%s'"), _reference.method.name);
     }
-    return "Calls the specified parent script function";
+    return OTR("Calls the specified parent script function");
 }
 
 String OScriptNodeCallParentScriptFunction::get_node_title() const {
-    return vformat("Parent: %s", super::get_node_title());
+    return vformat(OTR("Parent: %s"), super::get_node_title());
 }
 
 void OScriptNodeCallParentScriptFunction::initialize(const OScriptNodeInitContext& p_context) {
@@ -730,9 +732,9 @@ bool OScriptNodeCallBuiltinFunction::_has_execution_pins(const MethodInfo& p_met
 
 String OScriptNodeCallBuiltinFunction::get_tooltip_text() const {
     if (!_reference.method.name.is_empty()) {
-        return vformat("Calls the built-in Godot function '%s'", _reference.method.name);
+        return vformat(OTR("Calls the built-in Godot function '%s'"), _reference.method.name);
     }
-    return "Calls the specified built-in Godot function";
+    return OTR("Calls the specified built-in Godot function");
 }
 
 String OScriptNodeCallBuiltinFunction::get_node_title() const {
@@ -899,16 +901,16 @@ void OScriptNodeCallStaticFunction::allocate_default_pins() {
 
 String OScriptNodeCallStaticFunction::get_tooltip_text() const {
     if (!_class_name.is_empty() && !_method.name.is_empty()) {
-        return vformat("Calls the static function '%s.%s'", _class_name, _method.name);
+        return vformat(OTR("Calls the static function '%s.%s'"), _class_name, _method.name);
     }
-    return "Calls a static function";
+    return OTR("Calls a static function");
 }
 
 String OScriptNodeCallStaticFunction::get_node_title() const {
     if (!_class_name.is_empty() && !_method.name.is_empty()) {
         return vformat("%s %s", _class_name, _method.name.capitalize());
     }
-    return "Call Static Function";
+    return OTR("Call Static Function");
 }
 
 String OScriptNodeCallStaticFunction::get_help_topic() const {

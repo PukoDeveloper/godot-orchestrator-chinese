@@ -14,6 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+//Modifications Copyright (c) 2026 PukoDeveloper.
+//This file has been modified by PukoDeveloper on 2026-8-31.
 #include "orchestration/nodes/compose.h"
 
 #include "api/extension_db.h"
@@ -50,7 +52,7 @@ String OScriptNodeCompose::get_tooltip_text() const {
     if (_type != Variant::NIL) {
         const String type_name = VariantUtils::get_friendly_type_name(_type);
         const String components = StringUtils::join(", ", _type_components[_type]);
-        return vformat("Make a %s from %s", type_name, components);
+        return vformat(OTR("Make a %s from %s"), type_name, components);
     }
     return "Construct a Godot built-in type, optionally from its sub-components.";
 }

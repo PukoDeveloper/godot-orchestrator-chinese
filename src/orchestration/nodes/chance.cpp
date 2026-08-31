@@ -14,6 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+//Modifications Copyright (c) 2026 PukoDeveloper.
+//This file has been modified by PukoDeveloper on 2026-8-31.
 #include "orchestration/nodes/chance.h"
 
 #include "common/property_utils.h"
@@ -47,16 +49,16 @@ void OScriptNodeChance::post_initialize() {
 void OScriptNodeChance::allocate_default_pins() {
     create_pin(PD_Input, PT_Execution, PropertyUtils::make_exec("ExecIn"));
 
-    create_pin(PD_Output, PT_Execution, PropertyUtils::make_exec("Within"))->set_label(vformat("0 to %d %%", _chance));
-    create_pin(PD_Output, PT_Execution, PropertyUtils::make_exec("Outside"))->set_label(vformat("%d to 100 %%", _chance + 1));
+    create_pin(PD_Output, PT_Execution, PropertyUtils::make_exec("Within"))->set_label(vformat(OTR("0 to %d %%"), _chance));
+    create_pin(PD_Output, PT_Execution, PropertyUtils::make_exec("Outside"))->set_label(vformat(OTR("%d to 100 %%"), _chance + 1));
 
     super::allocate_default_pins();
 }
 
 String OScriptNodeChance::get_tooltip_text() const {
-    return "Calculates a percentage chance (0 to 100), taking the path based on the chance.";
+    return OTR("Calculates a percentage chance (0 to 100), taking the path based on the chance.");
 }
 
 String OScriptNodeChance::get_node_title() const {
-    return "Chance";
+    return OTR("Chance");
 }

@@ -14,6 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+//Modifications Copyright (c) 2026 PukoDeveloper.
+//This file has been modified by PukoDeveloper on 2026-8-31.
 #include "orchestration/nodes/autoload.h"
 
 #include "common/property_utils.h"
@@ -89,11 +91,11 @@ void OScriptNodeAutoload::allocate_default_pins() {
 }
 
 String OScriptNodeAutoload::get_tooltip_text() const {
-    return "Obtain a reference to a project autoload.";
+    return OTR("Obtain a reference to a project autoload.");
 }
 
 String OScriptNodeAutoload::get_node_title() const {
-    return vformat("Get %s", _autoload);
+    return vformat(OTR("Get %s"), _autoload);
 }
 
 String OScriptNodeAutoload::get_icon() const {

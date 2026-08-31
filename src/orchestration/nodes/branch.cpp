@@ -14,12 +14,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+//Modifications Copyright (c) 2026 PukoDeveloper.
+//This file has been modified by PukoDeveloper on 2026-8-31.
 #include "orchestration/nodes/branch.h"
 
 #include "common/property_utils.h"
 
 void OScriptNodeBranch::allocate_default_pins() {
-    create_pin(PD_Input, PT_Execution, PropertyUtils::make_exec("ExecIn"))->set_label("if [condition]");
+    create_pin(PD_Input, PT_Execution, PropertyUtils::make_exec("ExecIn"))->set_label(OTR("if [condition]"));
     create_pin(PD_Input, PT_Data, PropertyUtils::make_typed("condition", Variant::BOOL), false);
 
     create_pin(PD_Output, PT_Execution, PropertyUtils::make_exec("true"))->show_label();
@@ -29,11 +31,11 @@ void OScriptNodeBranch::allocate_default_pins() {
 }
 
 String OScriptNodeBranch::get_tooltip_text() const {
-    return "If condition is true, execution goes to true; otherwise, it goes to false.";
+    return OTR("If condition is true, execution goes to true; otherwise, it goes to false.");
 }
 
 String OScriptNodeBranch::get_node_title() const {
-    return "Branch";
+    return OTR("Branch");
 }
 
 String OScriptNodeBranch::get_icon() const {

@@ -14,6 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+//Modifications Copyright (c) 2026 PukoDeveloper.
+//This file has been modified by PukoDeveloper on 2026-8-31.
 #include "orchestration/nodes/coercion_node.h"
 
 #include "common/macros.h"
@@ -129,7 +131,7 @@ void OScriptNodeCoercion::allocate_default_pins() {
 String OScriptNodeCoercion::get_tooltip_text() const {
     const String left = VariantUtils::get_friendly_type_name(_left, true);
     const String right = VariantUtils::get_friendly_type_name(_right, true);
-    return vformat("Converts %s %s to %s", VariantUtils::get_type_name_article(_left, true), left, right);
+    return vformat(OTR("Converts %s %s to %s"), VariantUtils::get_type_name_article(_left, true), left, right);
 }
 
 String OScriptNodeCoercion::get_node_title() const {
