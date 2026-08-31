@@ -24,7 +24,7 @@
 #include "script/language.h"
 
 #include <godot_cpp/classes/node.hpp>
-#include "common/macros."
+#include "common/macros.h"
 void OScriptNodeAutoload::_get_property_list(List<PropertyInfo>* r_list) const {
     const String autoload_names = StringUtils::join(",", OrchestratorProjectSettingsCache::get_singleton()->get_autoload_names());
     r_list->push_back(PropertyInfo(Variant::STRING, "autoload", PROPERTY_HINT_ENUM, autoload_names));

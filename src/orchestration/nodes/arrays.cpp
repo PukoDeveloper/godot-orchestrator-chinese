@@ -21,7 +21,7 @@
 #include "common/property_utils.h"
 #include "common/variant_utils.h"
 
-#include "common/macros."
+#include "common/macros.h"
 void OScriptNodeMakeArray::_upgrade(uint32_t p_version, uint32_t p_current_version) {
     if (p_version == 1 && p_current_version >= 2) {
         // Fixup pins - make sure variant is encoded into pins

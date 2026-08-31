@@ -19,7 +19,7 @@
 #include "orchestration/nodes/chance.h"
 
 #include "common/property_utils.h"
-#include "common/macros."
+#include "common/macros.h"
 void OScriptNodeChance::_get_property_list(List<PropertyInfo>* r_list) const {
     r_list->push_back(PropertyInfo(Variant::INT, "chance", PROPERTY_HINT_RANGE, "0,100"));
 }

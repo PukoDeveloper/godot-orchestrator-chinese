@@ -19,7 +19,7 @@
 #include "orchestration/nodes/branch.h"
 
 #include "common/property_utils.h"
-#include "common/macros."
+#include "common/macros.h"
 void OScriptNodeBranch::allocate_default_pins() {
     create_pin(PD_Input, PT_Execution, PropertyUtils::make_exec("ExecIn"))->set_label(OTR("if [condition]"));
     create_pin(PD_Input, PT_Data, PropertyUtils::make_typed("condition", Variant::BOOL), false);

@@ -32,7 +32,7 @@
 
 #include <godot_cpp/classes/expression.hpp>
 #include <godot_cpp/classes/node.hpp>
-#include "common/macros."
+#include "common/macros.h"
 void OScriptNodeCallFunction::_get_property_list(List<PropertyInfo>* r_list) const {
     r_list->push_back(PropertyInfo(Variant::STRING, "guid", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_STORAGE));
     r_list->push_back(PropertyInfo(Variant::STRING, "function_name", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_STORAGE));
