@@ -18,4 +18,4 @@ msgid "Create an array from a series of items."
 msgstr "為輸入的元素創建列表"
 
 msgid "Given a {0} and index, return the item at the specified index.{1}"
-msgstr "{1} 和 {0}
+msgstr "{1} 和 {0}"
