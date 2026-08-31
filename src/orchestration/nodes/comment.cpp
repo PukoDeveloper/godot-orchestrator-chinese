@@ -21,7 +21,7 @@
 #include "common/string_utils.h"
 
 #include <godot_cpp/classes/resource_uid.hpp>
-
+#include "common/macros."
 void OScriptNodeComment::_get_property_list(List<PropertyInfo>* r_list) const {
     const String movement_modes = "Group Movement,Comment";
 }

@@ -19,7 +19,7 @@
 #include "orchestration/nodes/await.h"
 
 #include "common/property_utils.h"
-
+#include "common/macros."
 void OScriptNodeAwait::_upgrade(uint32_t p_version, uint32_t p_current_version) {
     if (find_pin("result", PD_Output).is_null()) {
         reconstruct_node();

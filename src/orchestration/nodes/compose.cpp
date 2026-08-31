@@ -26,7 +26,7 @@
 #include "common/variant_utils.h"
 
 #include <godot_cpp/classes/expression.hpp>
-
+#include "common/macros."
 OScriptNodeCompose::TypeMap OScriptNodeCompose::_type_components;
 
 void OScriptNodeCompose::post_initialize() {

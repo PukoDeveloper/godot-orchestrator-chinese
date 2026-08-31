@@ -22,7 +22,7 @@
 #include "common/property_utils.h"
 #include "common/variant_utils.h"
 #include "orchestration/orchestration.h"
-
+#include "common/macros."
 Ref<OScriptNodePin> OScriptNodeCoercion::_get_input_pin() {
     return find_pin("input", PD_Input);
 }
