@@ -118,7 +118,7 @@ void OScriptNodeArrayGet::allocate_default_pins() {
 }
 
 String OScriptNodeArrayGet::get_tooltip_text() const {
-    return vformat(OTR("Given a {0} and index, return the item at the specified index.{1}"), _collection_name, 80);
+    return OTRF("Given a {0} and index, return the item at the specified index.{1}", _collection_name, 80);
 }
 
 String OScriptNodeArrayGet::get_node_title() const {

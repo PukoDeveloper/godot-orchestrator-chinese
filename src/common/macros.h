@@ -97,22 +97,6 @@
 #define SNAME(x) StringName((x))
 
 
-/*inline godot::String orchestrator_tr(const godot::String &p_message, const godot::StringName &p_context = "") {
-    godot::TranslationServer *ts = godot::TranslationServer::get_singleton();
-    if (!ts) {
-        return p_message;
-    }
-    // 指定外掛的 Domain 進行翻譯
-    Ref<TranslationDomain> domain = ts->get_or_add_domain("godot_orchestrator");
-    if (domain.is_valid()) {
-        return domain->translate(p_message, p_context);
-    }
-    return ts->translate(p_message, p_context);
-}
-
-// 供 C++ 原始碼呼叫的巨集
-#define OTR(m_text) orchestrator_tr(m_text)
-*/
 
 namespace orchestrator {
 
@@ -145,9 +129,18 @@ inline godot::String orchestrator_tr_n(const godot::String &p_message, const god
     return ts->translate_plural(p_message, p_message_plural, p_n, p_context);
 }
 
+template <typename... Args>
+inline godot::String orchestrator_tr_format(const godot::String &p_message, Args&&... p_args) {
+    godot::String translated = orchestrator_tr(p_message);
+    godot::Array values;
+    (values.push_back(godot::Variant(std::forward<Args>(p_args))), ...);
+    return translated.format(values);
+}
+
 } // namespace orchestrator
 
 // 全域巨集定義（方便在所有 C++ 原始碼中直接呼叫）
 #define OTR(m_text) orchestrator::orchestrator_tr(m_text)
 #define OTRC(m_text, m_context) orchestrator::orchestrator_tr(m_text, m_context)
 #define OTRN(m_singular, m_plural, m_count) orchestrator::orchestrator_tr_n(m_singular, m_plural, m_count)
+#define OTRF(m_text, ...) orchestrator::orchestrator_tr_format(m_text, __VA_ARGS__)
